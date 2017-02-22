@@ -6,13 +6,18 @@
             android:id="@+id/nav_search"
             android:icon="@android:drawable/ic_menu_search"
             android:title="جستجو" />
+
         <item
-            android:id="@+id/nav_login"
-            android:icon="@android:drawable/btn_star"
-            android:title="ورود به حساب کاربری"
+            android:id="@+id/nav_apps"
+            android:icon="@android:drawable/ic_dialog_dialer"
+            android:title="مشاهده وقت‌ها"
             android:visible="true"/>
 
-
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@android:drawable/ic_delete"
+            android:title="خروج"
+            android:visible="true"/>
 
     </group>
 

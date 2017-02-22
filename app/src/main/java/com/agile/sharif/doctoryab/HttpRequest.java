@@ -33,13 +33,15 @@ public class HttpRequest {
         StringBuilder stringBuilder = null;
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
+        System.out.println("response");
+
         if(data != null){
             addParam(urlConnection);
         }
         urlConnection.setRequestMethod(method);
 
         try {
-            System.out.println("response" + urlConnection.getResponseCode());
+            System.out.println("response" + urlConnection.getResponseCode() + " " + urlConnection.toString());
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             stringBuilder = new StringBuilder();
             String line;
@@ -67,8 +69,8 @@ public class HttpRequest {
              data.keySet()) {
             dataStr += (URLEncoder.encode(key, "UTF-8") +"="+ URLEncoder.encode(data.get(key ), "UTF-8") + "&");
         }
-        dataStr.substring(0 , dataStr.length()-1);
-
+        dataStr = dataStr.substring(0 , dataStr.length()-1);
+        System.out.println("here  " + urlConnection.toString() + " " + urlConnection.getOutputStream());
         OutputStream os = urlConnection.getOutputStream();
         BufferedWriter writer = new BufferedWriter(
                 new OutputStreamWriter(os, "UTF-8"));

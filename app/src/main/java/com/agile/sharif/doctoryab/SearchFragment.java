@@ -35,8 +35,7 @@ public class SearchFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.search_fragment, container, false);
         FloatingActionButton searchButton = (FloatingActionButton) view.findViewById(R.id.search_btn);
-        EditText searchEditText = (EditText) view.findViewById(R.id.search_key);
-        String searchKey = searchEditText.getText().toString();
+        final EditText searchEditText = (EditText) view.findViewById(R.id.search_key);
         final ProgressBar searchProgressBar = (ProgressBar) view.findViewById(R.id.search_progressBar);
         final LinearLayout searchResult = (LinearLayout) view.findViewById(R.id.search_result);
 
@@ -46,7 +45,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 System.out.println("here");
                 try {
-                    new SearchRequestTask(new URL("http://10.0.2.2:8000/appointment/search-key/"), searchProgressBar , searchResult ,getActivity(), "" , getActivity() ).execute();
+                    new SearchRequestTask(new URL("http://10.0.2.2:8000/appointment/search-key/"), searchProgressBar , searchResult ,getActivity(), searchEditText.getText().toString() , getActivity() ).execute();
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }

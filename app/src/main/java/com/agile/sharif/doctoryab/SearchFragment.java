@@ -45,7 +45,7 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 System.out.println("here");
                 try {
-                    new SearchRequestTask(new URL("http://10.0.2.2:8000/appointment/search-key/"), searchProgressBar , searchResult ,getActivity(), searchEditText.getText().toString() , getActivity() ).execute();
+                    new SearchRequestTask(new URL("https://doctoryab.herokuapp.com/appointment/search-key/"), searchProgressBar , searchResult ,getActivity(), searchEditText.getText().toString() , getActivity() ).execute();
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }

@@ -153,7 +153,7 @@ public class SearchRequestTask extends AsyncTask<Void, Void, JSONArray> {
             @Override
             public void onClick(View view) {
                 try {
-                    new DoctorRequestTask(new URL("http://10.0.2.2:8000/user/doctor/" +docID + "/"), activity).execute();
+                    new DoctorRequestTask(new URL("https://doctoryab.herokuapp.com/user/doctor/" +docID + "/"), activity).execute();
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }

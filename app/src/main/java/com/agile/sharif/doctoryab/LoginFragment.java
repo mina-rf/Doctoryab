@@ -47,7 +47,7 @@ public class LoginFragment extends Fragment {
                      HashMap<String,String> data = new HashMap<>();
                     data.put("username" , username.getText().toString());
                     data.put("password" , password.getText().toString());
-                    new LoginRequestTask(new URL("http://10.0.2.2:8000/get_auth_token/") , mesasge , getActivity() , data).execute();
+                    new LoginRequestTask(new URL("https://doctoryab.herokuapp.com/get_auth_token/") , mesasge , getActivity() , data).execute();
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }

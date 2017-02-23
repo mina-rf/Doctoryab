@@ -36,7 +36,7 @@ public class AppointmentsFragment extends Fragment {
         LinearLayout layout = (LinearLayout) view.findViewById( R.id.apps_layout);
         try {
 
-            new AppointmentsRequestTask(new URL("http://10.0.2.2:8000/user/api/get-appointments/") ,layout , getActivity() ).execute();
+            new AppointmentsRequestTask(new URL("https://doctoryab.herokuapp.com/user/api/get-appointments/") ,layout , getActivity() ).execute();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

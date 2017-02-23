@@ -110,6 +110,14 @@ public class MainActivity extends AppCompatActivity
             fragment = new AppointmentsFragment();
             System.out.println("apps");
         }
+        else if ( id == R.id.nav_logout){
+            SharedPreferences settings = PreferenceManager
+                    .getDefaultSharedPreferences(getApplicationContext());
+            settings.edit().remove("token").commit();
+            fragment = new SearchFragment();
+            recreate();
+        }
+
 
         FragmentManager fragmentManager = activity.getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -120,5 +128,9 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void refresh(){
+        recreate();;
     }
 }

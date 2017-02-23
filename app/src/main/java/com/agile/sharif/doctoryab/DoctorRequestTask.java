@@ -41,7 +41,7 @@ public class DoctorRequestTask extends AsyncTask<Void, Void, JSONObject> {
 
 
         try {
-            StringBuilder stringBuilder = new HttpRequest(url , "GET" , null).getResponseStringBuilder();
+            StringBuilder stringBuilder = new HttpRequest(url , "GET" , null , null).getResponseStringBuilder();
             JSONObject response = new JSONObject(stringBuilder.toString());
             return response;
         } catch (Exception e) {

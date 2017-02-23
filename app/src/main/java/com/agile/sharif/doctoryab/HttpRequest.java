@@ -20,12 +20,14 @@ public class HttpRequest {
 
     private URL url;
     private String method;
-    private HashMap<String,String> data;
+    private HashMap<String, String> data;
+    private String token;
 
-    public HttpRequest(URL url ,String method ,HashMap<String,String> data) {
+    public HttpRequest(URL url, String method, HashMap<String, String> data, String token) {
         this.url = url;
         this.method = method;
         this.data = data;
+        this.token = token;
     }
 
     public StringBuilder getResponseStringBuilder() throws IOException {
@@ -35,7 +37,12 @@ public class HttpRequest {
 
         System.out.println("response");
 
-        if(data != null){
+        if (token != null) {
+            urlConnection.setRequestProperty("Authorization", "Token " + token);
+        }
+
+
+        if (data != null) {
             addParam(urlConnection);
         }
         urlConnection.setRequestMethod(method);
@@ -49,11 +56,9 @@ public class HttpRequest {
                 stringBuilder.append(line).append("\n");
             }
             bufferedReader.close();
-        }
-        finally {
+        } finally {
             urlConnection.disconnect();
         }
-
 
 
         return stringBuilder;
@@ -64,12 +69,14 @@ public class HttpRequest {
         urlConnection.setDoInput(true);
         urlConnection.setDoOutput(true);
 
+
         String dataStr = "";
-        for (String key:
-             data.keySet()) {
-            dataStr += (URLEncoder.encode(key, "UTF-8") +"="+ URLEncoder.encode(data.get(key ), "UTF-8") + "&");
+        for (String key :
+                data.keySet()) {
+            dataStr += (URLEncoder.encode(key, "UTF-8") + "=" + URLEncoder.encode(data.get(key), "UTF-8") + "&");
         }
-        dataStr = dataStr.substring(0 , dataStr.length()-1);
+
+        dataStr = dataStr.substring(0, dataStr.length() - 1);
         System.out.println("here  " + urlConnection.toString() + " " + urlConnection.getOutputStream());
         OutputStream os = urlConnection.getOutputStream();
         BufferedWriter writer = new BufferedWriter(
@@ -78,7 +85,6 @@ public class HttpRequest {
         writer.flush();
         writer.close();
         os.close();
-
 
 
     }

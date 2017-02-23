@@ -66,7 +66,7 @@ public class SearchRequestTask extends AsyncTask<Void, Void, JSONArray> {
         try {
             HashMap<String , String> data = new HashMap<>();
             data.put("keyword" , keyword);
-            StringBuilder stringBuilder = new HttpRequest(url , "POST" , data).getResponseStringBuilder();
+            StringBuilder stringBuilder = new HttpRequest(url , "POST" , data , null).getResponseStringBuilder();
             JSONArray response = new JSONArray(stringBuilder.toString());
             return response;
 
@@ -85,12 +85,13 @@ public class SearchRequestTask extends AsyncTask<Void, Void, JSONArray> {
             }
             layout.removeAllViews();
             progressBar.setVisibility(View.GONE);
+            System.out.println(response.length());
             for (int i = 0; i < response.length(); i++) {
                 addDoctorCard(response.getJSONObject(i), layout, mContext);
             }
 
         } catch (JSONException e) {
-
+            System.out.println(e.toString());
         }
 
     }
@@ -133,7 +134,7 @@ public class SearchRequestTask extends AsyncTask<Void, Void, JSONArray> {
         card.addView(cardLayout);
 
         layout.addView(card);
-
+        System.out.println(doctor);
         setListenerForCard(card , doctor.get("id").toString());
 
     }
